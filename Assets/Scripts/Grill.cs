@@ -19,11 +19,11 @@ public class Grill : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         var b = other.GetComponentInChildren<BurgerHealth>();
 
-        b.isCooking = true;
+        b.IsCooking = true;
     }
 
     private void OnTriggerExit(Collider other) {
         var b = other.GetComponentInChildren<BurgerHealth>();
-        b.isCooking = false;
+        b.IsCooking = false;
     }
 }

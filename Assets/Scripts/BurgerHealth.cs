@@ -6,8 +6,15 @@ using UnityEngine.UI;
 public class BurgerHealth : MonoBehaviour
 {
     [SerializeField] private Image _healthBar;
-    [SerializeField] private float _speed = 1f;
-    public bool isCooking = false;
+    [SerializeField] private float _speed = 5f;
+    [SerializeField] private Transform _canvasTransform;
+    [SerializeField] private Vector3 _canvasOffset;
+    private bool isCooking = false;
+
+    public bool IsCooking
+    {
+        set { isCooking = value; }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -15,31 +22,17 @@ public class BurgerHealth : MonoBehaviour
         _healthBar.fillAmount = 0;
     }
 
-    void UpdateHealthBar(float max, float current)
-    {
-        _healthBar.fillAmount = current / max;
-    }
-
     // Update is called once per frame
     void Update()
     {
         var pos = new Vector3(transform.position.x - Camera.main.transform.position.x, 0, 0);
-        transform.rotation = Quaternion.LookRotation(pos);
+        _canvasTransform.rotation = Quaternion.LookRotation(pos);
 
-        if(isCooking){
+        _canvasTransform.position = transform.position + _canvasOffset;
+
+        if (isCooking)
+        {
             _healthBar.fillAmount += _speed / 100 * Time.deltaTime;
         }
-    }
-
-    void OnTriggerEnter(){
-        isCooking = true;
-    }
-
-    void OnTriggerExit(){
-        isCooking = false;
-    }
-
-    private void OnTriggerEnter(Collider other) {
-        Debug.Log(other.tag);
     }
 }
