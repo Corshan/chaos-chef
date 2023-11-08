@@ -9,10 +9,10 @@ public class BurgerSpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("Player"))
-        {
+        // if (other.tag.Equals("Player"))
+        // {
             Instantiate(_prefab, _spawnTransform.position, _spawnTransform.rotation);
-        }
+        // }
     }
 
 }
