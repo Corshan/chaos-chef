@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BurgerSpawner : MonoBehaviour
+public class ItemSpawner: MonoBehaviour
 {
     [SerializeField] private Transform _spawnTransform;
     [SerializeField] private Object _prefab;
