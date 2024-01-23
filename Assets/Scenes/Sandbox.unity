@@ -5730,6 +5730,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Join Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7996264221228849190, guid: f44fd9fd9c74cc345994e68f932e9e9a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6599,7 +6603,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6416673451260539532, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7697165329728068534, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
       propertyPath: m_LocalPosition.x

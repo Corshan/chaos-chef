@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Multiplayer Test.unity
     guid: 2a08df6804de7e041aea0b652dd832ee
   - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 2dac1b13961850d45967d4e383f7e5ca
+  - enabled: 1
     path: Assets/Scenes/Sandbox.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
