@@ -2774,9 +2774,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1756579308158267731, guid: 4e4f0affcb753964f8ffab5b11b22573, type: 3}
+      propertyPath: m_RaycastMask.m_Bits
+      value: 32
+      objectReference: {fileID: 0}
     - target: {fileID: 5667348886015418992, guid: 4e4f0affcb753964f8ffab5b11b22573, type: 3}
       propertyPath: m_Name
       value: Player (Non-loco) (XR Rig)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6030249587301038690, guid: 4e4f0affcb753964f8ffab5b11b22573, type: 3}
+      propertyPath: m_RaycastMask.m_Bits
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 8482558072052221679, guid: 4e4f0affcb753964f8ffab5b11b22573, type: 3}
       propertyPath: m_LocalPosition.x
