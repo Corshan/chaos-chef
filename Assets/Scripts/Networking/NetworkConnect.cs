@@ -16,11 +16,11 @@ public class NetworkConnect : MonoBehaviour
     public UnityTransport transport;
     private Lobby currentLobby;
 
-    private async void Awake()
-    {
-        // await UnityServices.InitializeAsync();
-        // await AuthenticationService.Instance.SignInAnonymouslyAsync();
-    }
+    // private async void Awake()
+    // {
+    //     // await UnityServices.InitializeAsync();
+    //     // await AuthenticationService.Instance.SignInAnonymouslyAsync();
+    // }
     public async void CreateServer()
     {
         Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxConnection);

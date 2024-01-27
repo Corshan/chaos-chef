@@ -64,15 +64,22 @@ namespace LobbySystem
             NetworkManager.Singleton.StartClient();
         }
 
-        public async void QuickJoin(){
-            currentLobby = await Lobbies.Instance.QuickJoinLobbyAsync();
-            string replayJoinCode = currentLobby.Data["JOIN_CODE"].Value;
+        public async void QuickJoin()
+        {
+            try
+            {
+                currentLobby = await Lobbies.Instance.QuickJoinLobbyAsync();
+                string replayJoinCode = currentLobby.Data["JOIN_CODE"].Value;
 
-            JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(replayJoinCode);
+                JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(replayJoinCode);
 
-            transport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port,
-                allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
-            NetworkManager.Singleton.StartClient();
+                transport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port,
+                    allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
+                NetworkManager.Singleton.StartClient();
+            }catch(RelayServiceException e){
+                Debug.Log(e);
+                throw e;
+            }
         }
 
         public async void CreateServer()

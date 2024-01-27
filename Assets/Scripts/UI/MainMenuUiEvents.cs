@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using LobbySystem;
@@ -9,31 +10,44 @@ public class MainMenuUiEvents : MonoBehaviour
 {
     private Animator anim;
 
-    private void Start() {
+    private void Start()
+    {
         anim = GetComponent<Animator>();
     }
 
-    public void JoinServer(){
+    public void JoinServer()
+    {
         NetworkManager.Singleton.StartClient();
 
         SceneLoader.ChangeScene(SceneLoader.Scenes.Sandbox);
     }
 
-    public void PlayGame(){
-        LobbyManager.Singleton.QuickJoin();
+    public void PlayGame()
+    {
+        try
+        {
+            LobbyManager.Singleton.QuickJoin();
 
-        SceneLoader.ChangeScene(SceneLoader.Scenes.Sandbox);
+            SceneLoader.ChangeScene(SceneLoader.Scenes.Sandbox);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
     }
 
-    public void OpenLobbyMenu(){
+    public void OpenLobbyMenu()
+    {
         anim.SetBool("openLobbyMenu", true);
     }
 
-    public void CloseLobbyMenu(){
+    public void CloseLobbyMenu()
+    {
         anim.SetBool("openLobbyMenu", false);
     }
 
-    public void QuitGame(){
+    public void QuitGame()
+    {
         Application.Quit();
     }
 }
