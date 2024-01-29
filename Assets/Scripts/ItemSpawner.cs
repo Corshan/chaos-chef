@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class ItemSpawner: NetworkBehaviour
+public class ItemSpawner : NetworkBehaviour
 {
     [SerializeField] private Transform _spawnTransform;
     [SerializeField] private GameObject _prefab;
@@ -12,15 +12,19 @@ public class ItemSpawner: NetworkBehaviour
     {
         if (other.tag.Equals("Player"))
         {
+            // GameObject clone = Instantiate(_prefab, _spawnTransform.position, Quaternion.identity);
+
+            // clone.GetComponent<NetworkObject>().Spawn();
             SpawnItemServerRpc();
         }
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void SpawnItemServerRpc(){
-        GameObject clone = Instantiate(_prefab, _spawnTransform.position, Quaternion.identity);
+    public void SpawnItemServerRpc()
+    {
+        GameObject go = Instantiate(_prefab, _spawnTransform.position, Quaternion.identity);
+        go.GetComponent<NetworkObject>().Spawn();
 
-        clone.GetComponent<NetworkObject>().Spawn();
     }
 
 }

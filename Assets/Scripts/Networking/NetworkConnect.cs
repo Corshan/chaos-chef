@@ -10,7 +10,7 @@ using Unity.Netcode.Transports.UTP;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 
-public class NetworkConnect : MonoBehaviour
+public class NetworkConnect : NetworkBehaviour
 {
     public int maxConnection = 20;
     public UnityTransport transport;

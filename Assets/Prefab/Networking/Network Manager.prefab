@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 720087435680703629}
   - component: {fileID: 7063092695167614221}
   - component: {fileID: 2019646388077001393}
-  - component: {fileID: 3918112166598036178}
   m_Layer: 0
   m_Name: Network Manager
   m_TagString: Untagged
@@ -84,7 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ProtocolType: 1
-  m_MaxPacketQueueSize: 128
+  m_MaxPacketQueueSize: 256
   m_MaxPayloadSize: 6144
   m_HeartbeatTimeoutMS: 500
   m_ConnectTimeoutMS: 1000
@@ -98,17 +97,3 @@ MonoBehaviour:
     PacketDelayMS: 0
     PacketJitterMS: 0
     PacketDropRate: 0
---- !u!114 &3918112166598036178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4431463178610027300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2858a42676d57eb42918fddedb9f83e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxConnection: 20
-  transport: {fileID: 0}

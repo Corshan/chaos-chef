@@ -16,9 +16,8 @@ GameObject:
   - component: {fileID: 3145596417113946346}
   - component: {fileID: 3404672155502385872}
   - component: {fileID: 6569225304789000054}
+  - component: {fileID: -7485313452651971613}
   - component: {fileID: -3403955178812311209}
-  - component: {fileID: -8588478725428901687}
-  - component: {fileID: -3033995453729813920}
   - component: {fileID: -1052748488060503632}
   m_Layer: 0
   m_Name: Tomato
@@ -324,7 +323,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3403955178812311209
+--- !u!114 &-7485313452651971613
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -333,19 +332,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1846494270638745297}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3785ca1e3844ce741a592c5f95629675, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-8588478725428901687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846494270638745297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: 470b35852001b294da1524b9952422c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SyncPositionX: 1
@@ -366,7 +353,7 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &-3033995453729813920
+--- !u!114 &-3403955178812311209
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -375,7 +362,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1846494270638745297}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Script: {fileID: 11500000, guid: 3785ca1e3844ce741a592c5f95629675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &-1052748488060503632
@@ -391,10 +378,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
+  AlwaysReplicateAsRoot: 1
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
   SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 1
-  AutoObjectParentSync: 1
+  AutoObjectParentSync: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6067869643808699255}
   m_Layer: 0
   m_Name: Left Hand
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 5462011626707061928}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 6539992359262685941}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 673677695914477879}
   m_Layer: 0
   m_Name: Right Hand
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
