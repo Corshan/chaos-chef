@@ -1,29 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class ItemCutting : MonoBehaviour
+public class ItemCutting : NetworkBehaviour
 {
     [SerializeField] private int maxHits = 5;
     [SerializeField] private GameObject slicedPrefab;
     [SerializeField] private int amountToSpawn = 1;
-    private int _currentHit = 0;
+    private NetworkVariable<byte> _currentHit = new(0);
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_currentHit == maxHits)
+        if(!IsServer) return;
+
+        if (_currentHit.Value == maxHits)
         {
             for (int i = 0; i < amountToSpawn; i++)
             {
-                Instantiate(slicedPrefab, transform.position, transform.rotation);
-
+                GameObject go = Instantiate(slicedPrefab, transform.position, Quaternion.identity);
+                go.GetComponent<NetworkObject>().Spawn();
             }
             Destroy(gameObject);
         }
 
-        if (other.tag.Equals("knife"))
+        if (other.CompareTag("knife"))
         {
-            _currentHit++;
+            _currentHit.Value++;
         }
     }
 }

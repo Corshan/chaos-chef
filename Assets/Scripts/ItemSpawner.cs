@@ -10,11 +10,8 @@ public class ItemSpawner : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("Player"))
+        if (other.CompareTag("Player"))
         {
-            // GameObject clone = Instantiate(_prefab, _spawnTransform.position, Quaternion.identity);
-
-            // clone.GetComponent<NetworkObject>().Spawn();
             SpawnItemServerRpc();
         }
     }

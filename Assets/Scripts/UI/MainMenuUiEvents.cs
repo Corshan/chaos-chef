@@ -28,7 +28,7 @@ public class MainMenuUiEvents : MonoBehaviour
         {
             LobbyManager.Singleton.QuickJoin();
 
-            SceneLoader.ChangeScene(SceneLoader.Scenes.Sandbox);
+            // SceneLoader.ChangeScene(SceneLoader.Scenes.Sandbox);
         }
         catch (Exception e)
         {
