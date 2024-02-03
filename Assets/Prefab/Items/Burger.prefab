@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6631536640333301181}
+  - component: {fileID: 968137000234013084}
+  - component: {fileID: 3314358496273459496}
   m_Layer: 0
   m_Name: Burger
-  m_TagString: Untagged
+  m_TagString: Burger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,6 +35,56 @@ Transform:
   - {fileID: 3539413849664315952}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &968137000234013084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558431922511205165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470b35852001b294da1524b9952422c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  Interpolate: 1
+  SlerpPosition: 0
+--- !u!114 &3314358496273459496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558431922511205165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 1
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 1
+  AutoObjectParentSync: 0
 --- !u!1 &5620986815757568834
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3539413849664315952}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -335,6 +387,7 @@ GameObject:
   - component: {fileID: 7707172777354509577}
   - component: {fileID: 5657434868322721327}
   - component: {fileID: 1403477907906625067}
+  - component: {fileID: 2358195340370236692}
   m_Layer: 0
   m_Name: burger patty
   m_TagString: Untagged
@@ -1431,7 +1484,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 8903099966624704672}
-  _speed: 5
   _canvasTransform: {fileID: 3539413849664315952}
   _canvasOffset: {x: 0.13, y: 0.18, z: 0.12}
   _canvasRotation: {x: 0, y: 0, z: 0}
+  cookedAmount: 0
+--- !u!114 &2358195340370236692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8282423586612695190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3785ca1e3844ce741a592c5f95629675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

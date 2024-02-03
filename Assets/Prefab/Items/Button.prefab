@@ -370,13 +370,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
+  AlwaysReplicateAsRoot: 1
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
   SceneMigrationSynchronization: 1
   SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
+  DontDestroyWithOwner: 1
+  AutoObjectParentSync: 0
 --- !u!1 &5225716786564641764
 GameObject:
   m_ObjectHideFlags: 0
@@ -35545,4 +35545,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnTransform: {fileID: 0}
-  _prefab: {fileID: 1558431922511205165, guid: 8aa7f3cbebd4ff644a94e281f3acf78d, type: 3}
+  _prefab: {fileID: 1846494270638745297, guid: 265fe343ff09003458abeb62b9cccba0, type: 3}

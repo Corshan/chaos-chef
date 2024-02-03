@@ -980,17 +980,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 789529236}
     m_Modifications:
     - target: {fileID: 2044575639923966550, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
-      propertyPath: _prefab
-      value: 
-      objectReference: {fileID: 1846494270638745297, guid: 265fe343ff09003458abeb62b9cccba0, type: 3}
-    - target: {fileID: 2044575639923966550, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
       propertyPath: _spawnTransform
       value: 
       objectReference: {fileID: 1242877142}
-    - target: {fileID: 2713490587307479560, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 446a04ceecbc7034cbca70cd16e7208a, type: 2}
     - target: {fileID: 2859197831593504034, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.058
@@ -1035,17 +1027,9 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 187498079}
-    - target: {fileID: 3545047866852043665, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
-      propertyPath: m_VersionIndex
-      value: 2456
-      objectReference: {fileID: 0}
     - target: {fileID: 3567620930322452432, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
       propertyPath: m_Name
       value: Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 3567620930322452432, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4962124810848308472, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
       propertyPath: m_Mesh
@@ -1063,10 +1047,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 321855289}
-    - target: {fileID: 5978202728405496564, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
-      propertyPath: m_VersionIndex
-      value: 1709
-      objectReference: {fileID: 0}
     - target: {fileID: 6014594383504208476, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1083,25 +1063,9 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1586904921}
-    - target: {fileID: 7621793412636837284, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
-      propertyPath: m_VersionIndex
-      value: 1109
-      objectReference: {fileID: 0}
     - target: {fileID: 8268516502233843768, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 875703955
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268516502233843768, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
-      propertyPath: AutoObjectParentSync
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268516502233843768, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
-      propertyPath: DontDestroyWithOwner
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8268516502233843768, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
-      propertyPath: AlwaysReplicateAsRoot
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2616,6 +2580,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbba7005120cc9d4d9a6ebcf019797cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxCookedAmount: 100
+  _speed: 10
 --- !u!43 &613465988
 Mesh:
   m_ObjectHideFlags: 0
@@ -6844,6 +6810,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (XR Rig)
       objectReference: {fileID: 0}
+    - target: {fileID: 6416673451260539532, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6767507262944097708, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
       propertyPath: m_RaycastMask.m_Bits
       value: 32
@@ -7278,6 +7248,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 273304718}
     m_Modifications:
     - target: {fileID: 2044575639923966550, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
+      propertyPath: _prefab
+      value: 
+      objectReference: {fileID: 1558431922511205165, guid: 8aa7f3cbebd4ff644a94e281f3acf78d, type: 3}
+    - target: {fileID: 2044575639923966550, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
       propertyPath: _spawnTransform
       value: 
       objectReference: {fileID: 26414679}
@@ -7325,13 +7299,13 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 269961309}
+    - target: {fileID: 3545047866852043665, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
+      propertyPath: m_VersionIndex
+      value: 2456
+      objectReference: {fileID: 0}
     - target: {fileID: 3567620930322452432, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
       propertyPath: m_Name
       value: Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 3567620930322452432, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4962124810848308472, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
       propertyPath: m_Mesh
@@ -7349,6 +7323,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 495539569}
+    - target: {fileID: 5978202728405496564, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
+      propertyPath: m_VersionIndex
+      value: 1709
+      objectReference: {fileID: 0}
     - target: {fileID: 6014594383504208476, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -7365,6 +7343,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 74588626}
+    - target: {fileID: 7621793412636837284, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
+      propertyPath: m_VersionIndex
+      value: 1109
+      objectReference: {fileID: 0}
     - target: {fileID: 8268516502233843768, guid: 8ba2123c43cf31345a0352486158858e, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 555855612

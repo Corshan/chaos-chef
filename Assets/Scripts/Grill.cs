@@ -1,19 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class Grill : MonoBehaviour
+public class Grill : NetworkBehaviour
 {
-    private void OnTriggerEnter(Collider other) {
-        var b = other.GetComponentInChildren<BurgerHealth>();
+    private readonly List<BurgerHealth> _burgers = new();
+    [SerializeField] private float _maxCookedAmount;
+    [SerializeField] private float _speed;
 
-        b.IsCooking = true;
-        b.IsVisable = true;
+    private void Update() {
+        if(!IsServer) return;
+        
+        foreach(var burger in _burgers){
+            burger.cookedAmount += _speed / _maxCookedAmount * Time.deltaTime;
+        }    
     }
 
-    private void OnTriggerExit(Collider other) {
-        var b = other.GetComponentInChildren<BurgerHealth>();
-        b.IsCooking = false;
-        b.IsVisable = false;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Burger")) return;
+
+        var burger = other.GetComponentInChildren<BurgerHealth>();
+
+        _burgers.Add(burger);
+        burger.IsVisable = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag("Burger")) return;
+
+        var burger = other.GetComponentInChildren<BurgerHealth>();
+
+        _burgers.Remove(burger);
+        burger.IsVisable = false;
     }
 }
