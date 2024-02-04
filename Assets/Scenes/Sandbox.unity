@@ -2324,6 +2324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3785ca1e3844ce741a592c5f95629675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _networkObject: {fileID: 0}
 --- !u!114 &343222199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4114,7 +4115,7 @@ GameObject:
   - component: {fileID: 1015533573}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4564,6 +4565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3785ca1e3844ce741a592c5f95629675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _networkObject: {fileID: 0}
 --- !u!114 &1033124361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4942,6 +4944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3785ca1e3844ce741a592c5f95629675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _networkObject: {fileID: 0}
 --- !u!114 &1272803626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5362,6 +5365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3785ca1e3844ce741a592c5f95629675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _networkObject: {fileID: 0}
 --- !u!114 &1422964341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5906,6 +5910,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Network Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 7063092695167614221, guid: bdbd3f1f936fbff489ee5db97f2d85fd, type: 3}
+      propertyPath: NetworkConfig.Prefabs.NetworkPrefabsLists.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7063092695167614221, guid: bdbd3f1f936fbff489ee5db97f2d85fd, type: 3}
+      propertyPath: NetworkConfig.Prefabs.NetworkPrefabsLists.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 10d0f24126be20f498187da5a582e367, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -17,10 +17,11 @@ namespace LobbySystem
     public class LobbyManager : MonoBehaviour
     {
         public static LobbyManager Singleton { get; private set; }
-        public static string joinCode { get; private set; }
+        public static string JoinCode { get; private set; }
         public static Lobby currentLobby;
         private static UnityTransport transport;
-        private int maxConnection = 20;
+        private readonly int maxConnection = 4;
+        private float _heartBeatTimer = 0;
 
         // public static List<Lobby>
 
@@ -37,6 +38,13 @@ namespace LobbySystem
 
                 transport = GameObject.Find("Network Manager").GetComponent<UnityTransport>();
             }
+        }
+
+        private void Update()
+        {
+            SendHeartBeatPing();
+
+            _heartBeatTimer += Time.deltaTime;
         }
 
         public async Task<QueryResponse> GetAllLobbiesAsync()
@@ -76,7 +84,9 @@ namespace LobbySystem
                 transport.SetClientRelayData(allocation.RelayServer.IpV4, (ushort)allocation.RelayServer.Port,
                     allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
                 NetworkManager.Singleton.StartClient();
-            }catch(RelayServiceException e){
+            }
+            catch (RelayServiceException e)
+            {
                 Debug.Log(e);
                 throw e;
             }
@@ -99,6 +109,17 @@ namespace LobbySystem
 
             Debug.Log(newJoinCode);
             NetworkManager.Singleton.StartServer();
+        }
+
+        private void SendHeartBeatPing()
+        {
+            if (_heartBeatTimer > 15)
+            {
+                if(currentLobby != null && currentLobby.HostId == AuthenticationService.Instance.PlayerId)
+                LobbyService.Instance.SendHeartbeatPingAsync(currentLobby.Id);
+
+                _heartBeatTimer = 0;
+            }
         }
     }
 

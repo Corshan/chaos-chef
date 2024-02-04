@@ -8,6 +8,8 @@ public class ItemSpawner : NetworkBehaviour
     [SerializeField] private Transform _spawnTransform;
     [SerializeField] private GameObject _prefab;
 
+    private int _counter = 0;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -20,6 +22,8 @@ public class ItemSpawner : NetworkBehaviour
     public void SpawnItemServerRpc()
     {
         GameObject go = Instantiate(_prefab, _spawnTransform.position, Quaternion.identity);
+        go.name += _counter;
+        _counter++;
         go.GetComponent<NetworkObject>().Spawn();
 
     }

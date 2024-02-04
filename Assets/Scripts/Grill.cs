@@ -8,13 +8,20 @@ public class Grill : NetworkBehaviour
     private readonly List<BurgerHealth> _burgers = new();
     [SerializeField] private float _maxCookedAmount;
     [SerializeField] private float _speed;
+    [SerializeField] private bool _debug;
 
-    private void Update() {
-        if(!IsServer) return;
-        
-        foreach(var burger in _burgers){
-            burger.cookedAmount += _speed / _maxCookedAmount * Time.deltaTime;
-        }    
+    private void Update()
+    {
+        if (!NetworkManager.Singleton.IsServer) return;
+
+        foreach (var burger in _burgers)
+        {
+            if (burger.cookedAmount < 1)
+            {
+                burger.cookedAmount += _speed / _maxCookedAmount * Time.deltaTime;
+                if(_debug) Debug.Log(burger.gameObject.name + " => " + burger.cookedAmount);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,6 +32,8 @@ public class Grill : NetworkBehaviour
 
         _burgers.Add(burger);
         burger.IsVisable = true;
+        
+        if(_debug) Debug.Log("Trigger Enter " + name);
     }
 
     private void OnTriggerExit(Collider other)
@@ -35,5 +44,7 @@ public class Grill : NetworkBehaviour
 
         _burgers.Remove(burger);
         burger.IsVisable = false;
+
+        if(_debug) Debug.Log("Trigger Exit " + name);
     }
 }

@@ -12,7 +12,7 @@ public class ItemCutting : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!IsServer) return;
+        if(!NetworkManager.Singleton.IsServer) return;
 
         if (_currentHit.Value == maxHits)
         {

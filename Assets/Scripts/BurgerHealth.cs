@@ -8,17 +8,20 @@ public class BurgerHealth : NetworkBehaviour
 {
     [SerializeField] private Image _healthBar;
     [SerializeField] private Transform _canvasTransform;
+    [SerializeField] private Transform _canvas;
     [SerializeField] private Vector3 _canvasOffset;
     [SerializeField] private Vector3 _canvasRotation;
-    public float cookedAmount;
+    public float cookedAmount = 0;
     private bool _isVisable = false;
     private Transform _cameraTransform;
+    public BurgerState state = BurgerState.NOT_COOKED;
     public bool IsVisable
     {
         set
         {
             _isVisable = value;
-            _canvasTransform.gameObject.SetActive(value);
+            // _canvasTransform.gameObject.SetActive(value);
+            _canvas.gameObject.SetActive(value);
         }
     }
 
@@ -26,9 +29,8 @@ public class BurgerHealth : NetworkBehaviour
     void Start()
     {
         _healthBar.fillAmount = 0;
-        _canvasTransform.gameObject.SetActive(false);
-        
-        if(IsServer) return;
+        // _canvasTransform.gameObject.SetActive(false);
+        _canvas.gameObject.SetActive(false);
         _cameraTransform = Camera.main.transform;
     }
 
@@ -43,5 +45,14 @@ public class BurgerHealth : NetworkBehaviour
         _canvasTransform.position = transform.position + _canvasOffset;
 
         _healthBar.fillAmount = cookedAmount;
+
+        if(NetworkManager.Singleton.IsServer) UpdateBurgerAmountClientRPC(cookedAmount);
+        // _canvas.enabled = true;
+    }
+
+    [ClientRpc]
+    public void UpdateBurgerAmountClientRPC(float newCookedAmount)
+    {
+        cookedAmount = newCookedAmount;
     }
 }
