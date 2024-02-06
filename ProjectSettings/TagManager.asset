@@ -6,6 +6,7 @@ TagManager:
   tags:
   - knife
   - Burger
+  - Bottom Bun
   layers:
   - Default
   - TransparentFX

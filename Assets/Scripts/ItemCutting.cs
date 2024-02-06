@@ -8,13 +8,13 @@ public class ItemCutting : NetworkBehaviour
     [SerializeField] private int maxHits = 5;
     [SerializeField] private GameObject slicedPrefab;
     [SerializeField] private int amountToSpawn = 1;
-    private NetworkVariable<byte> _currentHit = new(0);
+    private int _currentHit = 0;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!NetworkManager.Singleton.IsServer) return;
+        if (!NetworkManager.Singleton.IsServer) return;
 
-        if (_currentHit.Value == maxHits)
+        if (_currentHit == maxHits)
         {
             for (int i = 0; i < amountToSpawn; i++)
             {
@@ -24,9 +24,7 @@ public class ItemCutting : NetworkBehaviour
             Destroy(gameObject);
         }
 
-        if (other.CompareTag("knife"))
-        {
-            _currentHit.Value++;
-        }
+        if (other.CompareTag("knife")) _currentHit++;
+
     }
 }
