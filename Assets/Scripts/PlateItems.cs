@@ -1,66 +1,73 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class PlateItems : MonoBehaviour
 {
-    [SerializeField] private List<string> _items;
-    // [SerializeField] private GameObject _prefab;
-    [SerializeField] private Transform _transform;
-    [SerializeField] private GameObject _bunBottomModel;
-    [SerializeField] private GameObject _pattyModel;
-    [SerializeField] private GameObject _cheeseModel;
-    [SerializeField] private GameObject _tomatoModel;
-    [SerializeField] private GameObject _onionModel;
-    [SerializeField] private GameObject _pickleModel;
-    [SerializeField] private GameObject _bunTopModel;
+    private List<PlateItemTags> _items = new();
+    [SerializeField] private List<GameObject> _models;
+    [SerializeField] private Transform _attachPoint;
+    private Dictionary<PlateItemTags, GameObject> _dict = new();
 
     private bool _isBottomBun = false;
+    private bool _isTopBun = false;
     private bool _isPatty = false;
+    private float _height = 0;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Bottom Bun") && !_items.Contains(other.tag))
+        if (other.GetComponent<ItemTag>() == null) return;
+
+        var tag = other.GetComponent<ItemTag>().itemTag;
+
+        if (tag == PlateItemTags.BUTTOM_BUN)
         {
+            var go = _dict[tag];
+
+            go.transform.position = _attachPoint.position;
             other.gameObject.SetActive(false);
-            _bunBottomModel.SetActive(true);
-            _items.Add(other.tag);
+
+            go.SetActive(true);
+            _items.Add(tag);
+
             _isBottomBun = true;
         }
-
-        if (other.CompareTag("Burger") && !_items.Contains(other.tag) && _isBottomBun)
+        else if (tag == PlateItemTags.BURGER_PATTY && _isBottomBun)
         {
-            other.gameObject.SetActive(false);
-            _pattyModel.SetActive(true);
-            _items.Add(other.tag);
+            ActiveModel(tag, other.gameObject);
             _isPatty = true;
         }
+        else if (_dict.ContainsKey(tag) && _isBottomBun && _isPatty && !_isTopBun)
+        {
+            ActiveModel(tag, other.gameObject);
+            if (tag == PlateItemTags.TOP_BUN) _isTopBun = true;
+
+        }
     }
+
     // Start is called before the first frame update
     void Start()
     {
-        _bunBottomModel.SetActive(false);
-        _pattyModel.SetActive(false);
-        _cheeseModel.SetActive(false);
-        _tomatoModel.SetActive(false);
-        _onionModel.SetActive(false);
-        _pickleModel.SetActive(false);
-        _bunTopModel.SetActive(false);
+        foreach (var item in _models)
+        {
+            item.SetActive(false);
+            var tag = item.GetComponent<ItemTag>().itemTag;
+
+            _dict.Add(tag, item);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ActiveModel(PlateItemTags tag, GameObject other)
     {
+        Debug.Log(tag);
 
+        var go = _dict[tag];
+        var prevGo = _dict[_items[^1]];
+        go.transform.position = prevGo.GetComponent<SnapLocations>().top.position;
+
+        other.SetActive(false);
+        go.SetActive(true);
+        _items.Add(tag);
     }
-
-    // [System.Obsolete]
-    // public void OnSelectEntered(SelectEnterEventArgs selectEnterEventArgs)
-    // {
-    //     Debug.Log("grab");
-    //     Debug.Log(selectEnterEventArgs.interactorObject.transform.name);
-    //     selectEnterEventArgs.manager.ForceSelect(VrRigReferences.Singleton._rightHandInteractor, _items[^1].GetComponent<XRGrabInteractable>());
-    // }
 }
