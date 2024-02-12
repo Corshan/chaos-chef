@@ -13,7 +13,6 @@ public class PlateItems : MonoBehaviour
     private bool _isBottomBun = false;
     private bool _isTopBun = false;
     private bool _isPatty = false;
-    private float _height = 0;
 
     private void OnTriggerEnter(Collider other)
     {
