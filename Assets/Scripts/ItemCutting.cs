@@ -8,6 +8,8 @@ public class ItemCutting : NetworkBehaviour
     [SerializeField] private int maxHits = 5;
     [SerializeField] private GameObject slicedPrefab;
     [SerializeField] private int amountToSpawn = 1;
+    [SerializeField] private bool isBurger = false;
+    [SerializeField] private List<GameObject> _burgerBuns;
     private int _currentHit = 0;
 
     private void OnTriggerEnter(Collider other)
@@ -16,10 +18,21 @@ public class ItemCutting : NetworkBehaviour
 
         if (_currentHit == maxHits)
         {
-            for (int i = 0; i < amountToSpawn; i++)
+            if (isBurger)
             {
-                GameObject go = Instantiate(slicedPrefab, transform.position, Quaternion.identity);
-                go.GetComponent<NetworkObject>().Spawn();
+                foreach (var item in _burgerBuns)
+                {
+                    GameObject go = Instantiate(item, transform.position, Quaternion.identity);
+                    go.GetComponent<NetworkObject>().Spawn();
+                }
+            }
+            else
+            {
+                for (int i = 0; i < amountToSpawn; i++)
+                {
+                    GameObject go = Instantiate(slicedPrefab, transform.position, Quaternion.identity);
+                    go.GetComponent<NetworkObject>().Spawn();
+                }
             }
             Destroy(gameObject);
         }

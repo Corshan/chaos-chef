@@ -30,6 +30,8 @@ public class Grill : NetworkBehaviour
 
         var burger = other.GetComponentInChildren<BurgerHealth>();
 
+        if(burger == null) return;
+
         _burgers.Add(burger);
         burger.IsVisable = true;
         
@@ -41,6 +43,8 @@ public class Grill : NetworkBehaviour
         if (!other.CompareTag("Burger")) return;
 
         var burger = other.GetComponentInChildren<BurgerHealth>();
+
+        if(burger == null) return;
 
         _burgers.Remove(burger);
         burger.IsVisable = false;

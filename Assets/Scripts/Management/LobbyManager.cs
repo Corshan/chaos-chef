@@ -115,8 +115,11 @@ namespace LobbySystem
         {
             if (_heartBeatTimer > 15)
             {
-                if(currentLobby != null && currentLobby.HostId == AuthenticationService.Instance.PlayerId)
-                LobbyService.Instance.SendHeartbeatPingAsync(currentLobby.Id);
+                if (currentLobby != null && currentLobby.HostId == AuthenticationService.Instance.PlayerId)
+                {
+                    LobbyService.Instance.SendHeartbeatPingAsync(currentLobby.Id);
+                    Debug.Log("Heart Beat Sent");
+                }
 
                 _heartBeatTimer = 0;
             }

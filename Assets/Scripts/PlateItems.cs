@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlateItems : MonoBehaviour
+public class PlateItems : NetworkBehaviour
 {
     private List<PlateItemTags> _items = new();
     [SerializeField] private List<GameObject> _models;
@@ -16,13 +17,17 @@ public class PlateItems : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!NetworkManager.Singleton.IsServer) return;
+
         if (other.GetComponent<ItemTag>() == null) return;
 
         var tag = other.GetComponent<ItemTag>().itemTag;
+        var otherNetworkObject = other.GetComponent<NetworkObject>();
 
         if (tag == PlateItemTags.BUTTOM_BUN)
         {
             var go = _dict[tag];
+            otherNetworkObject.Despawn();
 
             go.transform.position = _attachPoint.position;
             other.gameObject.SetActive(false);
@@ -31,15 +36,18 @@ public class PlateItems : MonoBehaviour
             _items.Add(tag);
 
             _isBottomBun = true;
+            PlaceClientRpc(tag, _attachPoint.position);
         }
         else if (tag == PlateItemTags.BURGER_PATTY && _isBottomBun)
         {
-            ActiveModel(tag, other.gameObject);
+            ActiveModel(tag, other.gameObject, other.name);
+            other.GetComponent<NetworkOwnerShip>().GetNetworkObject().Despawn();
             _isPatty = true;
         }
         else if (_dict.ContainsKey(tag) && _isBottomBun && _isPatty && !_isTopBun)
         {
             ActiveModel(tag, other.gameObject);
+            otherNetworkObject.Despawn();
             if (tag == PlateItemTags.TOP_BUN) _isTopBun = true;
 
         }
@@ -57,7 +65,7 @@ public class PlateItems : MonoBehaviour
         }
     }
 
-    private void ActiveModel(PlateItemTags tag, GameObject other)
+    private void ActiveModel(PlateItemTags tag, GameObject other, string name = "")
     {
         Debug.Log(tag);
 
@@ -68,5 +76,20 @@ public class PlateItems : MonoBehaviour
         other.SetActive(false);
         go.SetActive(true);
         _items.Add(tag);
+
+        PlaceClientRpc(tag, go.transform.position, name);
+    }
+
+    [ClientRpc]
+    public void PlaceClientRpc(PlateItemTags tag, Vector3 pos, string name = "")
+    {
+        var go = _dict[tag];
+        go.transform.position = pos;
+        go.SetActive(true);
+
+        if(name.Equals("")) return;
+
+        var otherGo = GameObject.Find(name);
+        otherGo.SetActive(false);
     }
 }

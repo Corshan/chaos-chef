@@ -10,7 +10,6 @@ public class BurgerHealth : NetworkBehaviour
     [SerializeField] private Transform _canvasTransform;
     [SerializeField] private Transform _canvas;
     [SerializeField] private Vector3 _canvasOffset;
-    [SerializeField] private Vector3 _canvasRotation;
     public float cookedAmount = 0;
     private bool _isVisable = false;
     private Transform _cameraTransform;

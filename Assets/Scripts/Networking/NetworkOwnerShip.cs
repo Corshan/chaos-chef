@@ -7,12 +7,13 @@ public class NetworkOwnerShip : NetworkBehaviour
 {
     private readonly string _leftControllerName = "Left Controller";
     private readonly string _rightControlName = "Right Controller";
+
     [SerializeField]
     private NetworkObject _networkObject;
 
     private void Start()
     {
-       if(_networkObject == null) _networkObject = GetComponent<NetworkObject>();
+        if (_networkObject == null) _networkObject = GetComponent<NetworkObject>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -21,6 +22,11 @@ public class NetworkOwnerShip : NetworkBehaviour
         {
             GrabObjectServerRpc(NetworkManager.Singleton.LocalClientId);
         }
+    }
+
+    public NetworkObject GetNetworkObject()
+    {
+        return _networkObject;
     }
 
     [ServerRpc(RequireOwnership = false)]
