@@ -40,9 +40,13 @@ public class PlateItems : NetworkBehaviour
         }
         else if (tag == PlateItemTags.BURGER_PATTY && _isBottomBun)
         {
-            ActiveModel(tag, other.gameObject, other.name);
-            other.GetComponent<NetworkOwnerShip>().GetNetworkObject().Despawn();
-            _isPatty = true;
+            var burger = other.GetComponent<BurgerHealth>();
+            if(burger.state == BurgerState.COOKED){
+                ActiveModel(tag, other.gameObject, other.transform.parent.name);
+                other.GetComponent<NetworkOwnerShip>().GetNetworkObject().Despawn();
+                burger.DeactiveClientRPC();
+                _isPatty = true;
+            }
         }
         else if (_dict.ContainsKey(tag) && _isBottomBun && _isPatty && !_isTopBun)
         {
@@ -87,7 +91,7 @@ public class PlateItems : NetworkBehaviour
         go.transform.position = pos;
         go.SetActive(true);
 
-        if(name.Equals("")) return;
+        if (name.Equals("")) return;
 
         var otherGo = GameObject.Find(name);
         otherGo.SetActive(false);

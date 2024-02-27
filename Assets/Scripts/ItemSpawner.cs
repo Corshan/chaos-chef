@@ -26,6 +26,5 @@ public class ItemSpawner : NetworkBehaviour
         go.name += _counter;
         _counter++;
         go.GetComponent<NetworkObject>().Spawn();
-
     }
 }

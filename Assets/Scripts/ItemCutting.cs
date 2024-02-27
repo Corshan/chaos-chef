@@ -34,6 +34,7 @@ public class ItemCutting : NetworkBehaviour
                     go.GetComponent<NetworkObject>().Spawn();
                 }
             }
+            GetComponent<NetworkObject>().Despawn();
             Destroy(gameObject);
         }
 
