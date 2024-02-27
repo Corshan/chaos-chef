@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6631536640333301181}
   - component: {fileID: 3314358496273459496}
+  - component: {fileID: 745197814110648299}
   m_Layer: 0
   m_Name: Patty (with UI)
   m_TagString: Burger
@@ -54,6 +55,19 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 1
   AutoObjectParentSync: 0
+--- !u!114 &745197814110648299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558431922511205165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca6e8e97be4a35e48b0d516269bf49de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 1579065969005127155}
 --- !u!1 &1579065969005127155
 GameObject:
   m_ObjectHideFlags: 0

@@ -44,7 +44,6 @@ public class PlateItems : NetworkBehaviour
             if(burger.state == BurgerState.COOKED){
                 ActiveModel(tag, other.gameObject, other.transform.parent.name);
                 other.GetComponent<NetworkOwnerShip>().GetNetworkObject().Despawn();
-                burger.DeactiveClientRPC();
                 _isPatty = true;
             }
         }

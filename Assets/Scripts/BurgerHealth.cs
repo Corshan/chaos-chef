@@ -92,10 +92,4 @@ public class BurgerHealth : NetworkBehaviour
             BurgerStateChangeClientRPC(state);
         }
     }
-
-    [ClientRpc]
-    public void DeactiveClientRPC()
-    {
-        gameObject.SetActive(false);
-    }
 }
