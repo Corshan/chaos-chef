@@ -1,0 +1,107 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using TMPro;
+using UnityEngine;
+
+public class OrderSystem : MonoBehaviour
+{
+    [SerializeField] private List<TextMeshProUGUI> _toppingText;
+    private List<PlateItemTags> _currentOrder;
+    private List<PlateItemTags> _prevOrder;
+    private Dictionary<PlateItemTags, string> _dict = new()
+    {
+        {PlateItemTags.BUTTOM_BUN, "Button Bun"},
+        {PlateItemTags.BURGER_PATTY, "Patty"},
+        {PlateItemTags.CHEESE, "Cheese"},
+        {PlateItemTags.TOMATO, "Tomato"},
+        {PlateItemTags.ONION, "Onion"},
+        {PlateItemTags.PICKLES, "Pickles"},
+        {PlateItemTags.TOP_BUN, "Top Bun"},
+    };
+
+    [SerializeField] private bool _generateOrder = true;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        ClearDisplay();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (_generateOrder)
+        {
+            GenerateOrder();
+            ClearDisplay();
+            DisplayOrder();
+            _generateOrder = false;
+        }
+    }
+
+    void GenerateOrder()
+    {
+        if(_currentOrder != null) _prevOrder = new List<PlateItemTags>(_currentOrder);
+
+        _currentOrder = new List<PlateItemTags>
+        {
+            PlateItemTags.BUTTOM_BUN,
+            PlateItemTags.BURGER_PATTY
+        };
+
+        bool done = false;
+
+        while (_currentOrder.Count < 8 && !done)
+        {
+            int randomNum = Random.Range(3, 8);
+
+            if (_currentOrder.Contains((PlateItemTags)randomNum)) continue;
+
+            switch (randomNum)
+            {
+                case (int)PlateItemTags.CHEESE:
+                    _currentOrder.Add(PlateItemTags.CHEESE);
+                    break;
+
+                case (int)PlateItemTags.TOMATO:
+                    _currentOrder.Add(PlateItemTags.TOMATO);
+                    break;
+
+                case (int)PlateItemTags.ONION:
+                    _currentOrder.Add(PlateItemTags.ONION);
+                    break;
+
+                case (int)PlateItemTags.PICKLES:
+                    _currentOrder.Add(PlateItemTags.PICKLES);
+                    break;
+
+                default:
+                    _currentOrder.Add(PlateItemTags.TOP_BUN);
+                    done = true;
+                    break;
+            }
+        }
+
+        _currentOrder.Sort();
+        
+        if(_prevOrder != null && _currentOrder.All(_prevOrder.Contains)) GenerateOrder();
+    }
+
+    void DisplayOrder()
+    {
+        for (int i = 0; i < _currentOrder.Count; i++)
+        {
+            string txt = _dict[_currentOrder[i]];
+            _toppingText[i].text = txt;
+        }
+    }
+
+    void ClearDisplay()
+    {
+        foreach (var text in _toppingText)
+        {
+            text.text = "";
+        }
+    }
+}
