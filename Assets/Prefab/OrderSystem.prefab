@@ -580,6 +580,73 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &6113488555938421915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1378881589509113372}
+  - component: {fileID: 7924008565474371119}
+  - component: {fileID: 7720869741326022794}
+  m_Layer: 0
+  m_Name: Socket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1378881589509113372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6113488555938421915}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.422, z: 0.59}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5225557430857611684}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7924008565474371119
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6113488555938421915}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.43, y: 0.31, z: 0.46}
+  m_Center: {x: 0, y: 0.16, z: 0}
+--- !u!114 &7720869741326022794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6113488555938421915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9da06cf16a1a2640897b36b92bf7d62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _orderSystem: {fileID: 3766889262392361706}
 --- !u!1 &7073092735263191826
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,6 +657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5225557430857611684}
   - component: {fileID: 3766889262392361706}
+  - component: {fileID: 526047913299002958}
   m_Layer: 0
   m_Name: OrderSystem
   m_TagString: Untagged
@@ -611,6 +679,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2994316045448692573}
+  - {fileID: 1378881589509113372}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3766889262392361706
@@ -634,6 +703,26 @@ MonoBehaviour:
   - {fileID: 8298555831583489548}
   - {fileID: 4880369000565368681}
   _generateOrder: 1
+--- !u!114 &526047913299002958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073092735263191826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &7340064033173335986
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +870,7 @@ GameObject:
   - component: {fileID: 7302913196276792577}
   - component: {fileID: 6325652494301309897}
   m_Layer: 0
-  m_Name: SM_Prop_Kitchen_Menu_Screen_01
+  m_Name: Monitor Mount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -962,7 +1051,7 @@ GameObject:
   - component: {fileID: 8640761230374690903}
   - component: {fileID: 849150299481520521}
   m_Layer: 0
-  m_Name: SM_Prop_Kitchen_Menu_Screen_01_Screen_01
+  m_Name: Monitor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1315,7 +1404,7 @@ GameObject:
   - component: {fileID: 4403599014328604639}
   - component: {fileID: 6571529132454675748}
   m_Layer: 5
-  m_Name: UI
+  m_Name: Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

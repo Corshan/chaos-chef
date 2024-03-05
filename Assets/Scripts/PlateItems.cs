@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlateItems : NetworkBehaviour
 {
-    private List<PlateItemTags> _items = new();
+    private readonly List<PlateItemTags> _items = new();
     [SerializeField] private List<GameObject> _models;
     [SerializeField] private Transform _attachPoint;
     private Dictionary<PlateItemTags, GameObject> _dict = new();
@@ -41,7 +41,8 @@ public class PlateItems : NetworkBehaviour
         else if (tag == PlateItemTags.BURGER_PATTY && _isBottomBun)
         {
             var burger = other.GetComponent<BurgerHealth>();
-            if(burger.state == BurgerState.COOKED){
+            if (burger.state == BurgerState.COOKED)
+            {
                 ActiveModel(tag, other.gameObject, other.transform.parent.name);
                 other.GetComponent<NetworkOwnerShip>().GetNetworkObject().Despawn();
                 _isPatty = true;
@@ -94,5 +95,10 @@ public class PlateItems : NetworkBehaviour
 
         var otherGo = GameObject.Find(name);
         otherGo.SetActive(false);
+    }
+
+    public List<PlateItemTags> GetItems()
+    {
+        return _items;
     }
 }
