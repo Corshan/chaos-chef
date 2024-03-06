@@ -23,34 +23,25 @@ public class OrderSystem : NetworkBehaviour
 
     [SerializeField] private bool _generateOrder = true;
 
-    // private NetworkVariable<int[]> _currentOrderNetwork = new();
-    // private NetworkList<int> _currentOrderNetwork = new();
 
     // Start is called before the first frame update
     void Start()
     {
         ClearDisplay();
-        // _currentOrderNetwork.OnListChanged += OnValueChanged;
     }
-
-    // private void OnValueChanged(NetworkListEvent<int> changeEvent)
-    // {
-    //     ClearDisplay();
-    //     DisplayOrder();
-    // }
 
     // Update is called once per frame
     void Update()
     {
-        if (!NetworkManager.Singleton.IsServer) return;
+        // if (!NetworkManager.Singleton.IsServer) return;
 
-        if (_generateOrder)
-        {
-            GenerateOrder();
-            ClearDisplay();
-            DisplayOrder();
-            _generateOrder = false;
-        }
+        // if (_generateOrder)
+        // {
+        //     GenerateOrder();
+        //     ClearDisplay();
+        //     DisplayOrder();
+        //     _generateOrder = false;
+        // }
     }
 
     public void Innit()
@@ -107,15 +98,6 @@ public class OrderSystem : NetworkBehaviour
 
         if (_prevOrder != null && _currentOrder.All(_prevOrder.Contains)) GenerateOrder();
 
-        // _currentOrderNetwork = _currentOrder.Select(x => (int) x).ToArray();
-        // _currentOrderNetwork = new NetworkList<int>(_currentOrder.Select(x => (int) x).ToArray());
-        // _currentOrderNetwork.Clear();
-
-        // foreach (var item in _currentOrder)
-        // {
-        //     _currentOrderNetwork.Add((int)item);
-        // }
-
         GenerateOrderClientRpc(_currentOrder.Select(x => (int)x).ToArray());
     }
 
@@ -144,14 +126,22 @@ public class OrderSystem : NetworkBehaviour
         DisplayOrder();
     }
 
-    // void OnValueChanged(int[] previous, int[] current)
-    // {
-    //     _currentOrder = current.Select(x => (PlateItemTags) x).ToList();
-    // }
+    public void ClearOrderAndDisplay()
+    {
+        _currentOrder = new List<PlateItemTags>();
+        ClearDisplay();
+        ClearOrderAndDisplayClientRpc();
+    }
+
+    [ClientRpc]
+    public void ClearOrderAndDisplayClientRpc()
+    {
+        _currentOrder = new List<PlateItemTags>();
+        ClearDisplay();
+    }
 
     public bool CheckOrder(List<PlateItemTags> tags)
     {
-        // return tags.SequenceEqual(_currentOrder);
         tags.Sort();
         return _currentOrder.SequenceEqual(tags);
     }
