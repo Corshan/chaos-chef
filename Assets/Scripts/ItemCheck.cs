@@ -8,17 +8,14 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class ItemCheck : NetworkBehaviour
 {
     [SerializeField] private OrderSystem _orderSystem;
+    [SerializeField] private GameManager _gameManager;
     private GameObject _currentPlate;
     // Start is called before the first frame update
     void Start()
     {
-        NetworkManager.Singleton.OnServerStarted += OnSelectEntered;
+     
     }
 
-    private void OnSelectEntered()
-    {
-        // GetComponent<XRSocketInteractor>().showInteractableHoverMeshes = false;
-    }
 
     // Update is called once per frame
     void Update()
@@ -42,32 +39,8 @@ public class ItemCheck : NetworkBehaviour
             {
                 other.GetComponent<NetworkObject>().Despawn();
                 _orderSystem.Innit();
+                _gameManager.AddCash();
             }
         }
-    }
-
-    [System.Obsolete]
-    public void OnSelectEntered(SelectEnterEventArgs args)
-    {
-        OnSelectEnteredServerRpc(args.interactable.gameObject.name);
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    public void OnSelectEnteredServerRpc(string name)
-    {
-        // Debug.Log("Check burger " + name);
-        // // _currentPlate.SetActive(false);
-
-        // List<PlateItemTags> items = _currentPlate.GetComponent<PlateItems>().GetItems();
-
-        // bool result = _orderSystem.CheckOrder(items);
-
-        // Debug.Log(result);
-
-        // if (result)
-        // {
-        //     _currentPlate.GetComponent<NetworkObject>().Despawn();
-        //     _orderSystem.Innit();
-        // }
     }
 }
