@@ -38,6 +38,16 @@ namespace LobbySystem
 
                 transport = GameObject.Find("Network Manager").GetComponent<UnityTransport>();
             }
+
+            NetworkManager.Singleton.OnClientDisconnectCallback += OnDisconnect;
+        }
+
+        private void OnDisconnect(ulong obj)
+        {
+            if (NetworkManager.Singleton.IsServer) return;
+
+            NetworkManager.Singleton.Shutdown();
+            SceneLoader.ChangeScene(SceneLoader.Scenes.MainMenu);
         }
 
         private void Update()

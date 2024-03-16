@@ -17,7 +17,7 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private TextMeshProUGUI _cashText;
     [SerializeField][Range(10, 100)] private int _burgerCashAmount = 10;
-    [SerializeField] private OrderSystem _orderSystem;
+    [SerializeField] private List<OrderSystem> _orderSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +40,8 @@ public class GameManager : NetworkBehaviour
                 if (_timer.Value < 0)
                 {
                     _inRound.Value = false;
-                    _orderSystem.ClearOrderAndDisplay();
+                    // _orderSystem.ClearOrderAndDisplay();
+                    _orderSystem.ForEach(item => item.ClearOrderAndDisplay());
                     _timer.Value = 0;
                 }
             }
@@ -68,7 +69,7 @@ public class GameManager : NetworkBehaviour
         _inRound.Value = true;
         _cash.Value = 0;
         _timer.Value = roundTimer;
-        _orderSystem.Innit();
+        _orderSystem.ForEach(item => item.Innit());
     }
 
 }
