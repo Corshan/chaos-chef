@@ -121,7 +121,7 @@ Rigidbody:
   m_GameObject: {fileID: 796783662512642355}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -302,6 +302,8 @@ MonoBehaviour:
   maxHits: 5
   slicedPrefab: {fileID: 1451558442864005144, guid: f62e112ce9e185143a4736b0aca18409, type: 3}
   amountToSpawn: 3
+  isBurger: 0
+  _burgerBuns: []
 --- !u!65 &6848655887675330493
 BoxCollider:
   m_ObjectHideFlags: 0
