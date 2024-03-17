@@ -8,6 +8,9 @@ using UnityEngine;
 public class OrderSystem : NetworkBehaviour
 {
     [SerializeField] private List<TextMeshProUGUI> _toppingText;
+    [SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _audioClip;
     private List<PlateItemTags> _currentOrder;
     private List<PlateItemTags> _prevOrder;
     private Dictionary<PlateItemTags, string> _dict = new()
@@ -21,9 +24,6 @@ public class OrderSystem : NetworkBehaviour
         {PlateItemTags.TOP_BUN, "Top Bun"},
     };
 
-    [SerializeField] private bool _generateOrder = true;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -33,15 +33,7 @@ public class OrderSystem : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (!NetworkManager.Singleton.IsServer) return;
 
-        // if (_generateOrder)
-        // {
-        //     GenerateOrder();
-        //     ClearDisplay();
-        //     DisplayOrder();
-        //     _generateOrder = false;
-        // }
     }
 
     public void Innit()
@@ -144,5 +136,17 @@ public class OrderSystem : NetworkBehaviour
     {
         tags.Sort();
         return _currentOrder.SequenceEqual(tags);
+    }
+
+    private void TriggerEffects()
+    {
+        _particleSystem.Play();
+        _audioSource.PlayOneShot(_audioClip);
+    }
+
+    [ClientRpc]
+    public void TriggereffectsClientRpc()
+    {
+        TriggerEffects();
     }
 }

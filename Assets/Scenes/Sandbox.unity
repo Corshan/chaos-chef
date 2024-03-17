@@ -21043,7 +21043,7 @@ PrefabInstance:
       objectReference: {fileID: 2132877281}
     - target: {fileID: 7646458589269779684, guid: 3636ab9f7803ff949abc7bc43498ba26, type: 3}
       propertyPath: roundTimer
-      value: 60
+      value: 301
       objectReference: {fileID: 0}
     - target: {fileID: 7646458589269779684, guid: 3636ab9f7803ff949abc7bc43498ba26, type: 3}
       propertyPath: _orderSystem

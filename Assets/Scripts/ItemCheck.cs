@@ -39,6 +39,7 @@ public class ItemCheck : NetworkBehaviour
             {
                 other.GetComponent<NetworkObject>().Despawn();
                 _orderSystem.Innit();
+                _orderSystem.TriggereffectsClientRpc();
                 _gameManager.AddCash();
             }
         }
