@@ -10,6 +10,8 @@ public class ItemCutting : NetworkBehaviour
     [SerializeField] private int amountToSpawn = 1;
     [SerializeField] private bool isBurger = false;
     [SerializeField] private List<GameObject> _burgerBuns;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _audioClip;
     private int _currentHit = 0;
 
     private void OnTriggerEnter(Collider other)
@@ -34,11 +36,22 @@ public class ItemCutting : NetworkBehaviour
                     go.GetComponent<NetworkObject>().Spawn();
                 }
             }
+            PlayAudioClientRpc();
             GetComponent<NetworkObject>().Despawn();
             Destroy(gameObject);
         }
 
-        if (other.CompareTag("knife")) _currentHit++;
+        if (other.CompareTag("knife"))
+        {
+            _currentHit++;
+            PlayAudioClientRpc();
+        }
 
+    }
+
+    [ClientRpc]
+    public void PlayAudioClientRpc()
+    {
+        _audioSource.PlayOneShot(_audioClip);
     }
 }

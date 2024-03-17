@@ -6,12 +6,21 @@ using UnityEngine;
 public class Grill : NetworkBehaviour
 {
     private readonly List<BurgerHealth> _burgers = new();
-    [SerializeField] private float _maxCookedAmount;
-    [SerializeField] private float _speed;
-    [SerializeField] private bool _debug;
+    private NetworkVariable<bool> _isPlaying = new(false);
+    [SerializeField][Range(1, 100)] private float _maxCookedAmount = 100, _speed = 10;
+    [Header("Audio")]
+    [SerializeField] private AudioSource _audioSource;
+
+    private void Start()
+    {
+        _audioSource.mute = true;
+    }
 
     private void Update()
     {
+        _audioSource.mute = _isPlaying.Value;
+
+
         if (!NetworkManager.Singleton.IsServer) return;
 
         foreach (var burger in _burgers)
@@ -19,9 +28,10 @@ public class Grill : NetworkBehaviour
             if (burger.cookedAmount < 1)
             {
                 burger.cookedAmount += _speed / _maxCookedAmount * Time.deltaTime;
-                if(_debug) Debug.Log(burger.gameObject.name + " => " + burger.cookedAmount);
             }
         }
+
+        _isPlaying.Value = _burgers.Count <= 0;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,12 +40,11 @@ public class Grill : NetworkBehaviour
 
         var burger = other.GetComponentInChildren<BurgerHealth>();
 
-        if(burger == null) return;
+        if (burger == null) return;
 
         _burgers.Add(burger);
         burger.IsVisable = true;
-        
-        if(_debug) Debug.Log("Trigger Enter " + name);
+        // if (NetworkManager.Singleton.IsServer) _isPlaying.Value = true;
     }
 
     private void OnTriggerExit(Collider other)
@@ -44,11 +53,11 @@ public class Grill : NetworkBehaviour
 
         var burger = other.GetComponentInChildren<BurgerHealth>();
 
-        if(burger == null) return;
+        if (burger == null) return;
 
         _burgers.Remove(burger);
         burger.IsVisable = false;
 
-        if(_debug) Debug.Log("Trigger Exit " + name);
+        // if (NetworkManager.Singleton.IsServer) _isPlaying.Value = false;
     }
 }
