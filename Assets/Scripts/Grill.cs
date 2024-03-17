@@ -10,6 +10,8 @@ public class Grill : NetworkBehaviour
     [SerializeField][Range(1, 100)] private float _maxCookedAmount = 100, _speed = 10;
     [Header("Audio")]
     [SerializeField] private AudioSource _audioSource;
+    [Header("Effects")]
+    [SerializeField] private ParticleSystem _particleSystem;
 
     private void Start()
     {
@@ -19,7 +21,6 @@ public class Grill : NetworkBehaviour
     private void Update()
     {
         _audioSource.mute = _isPlaying.Value;
-
 
         if (!NetworkManager.Singleton.IsServer) return;
 
@@ -32,6 +33,7 @@ public class Grill : NetworkBehaviour
         }
 
         _isPlaying.Value = _burgers.Count <= 0;
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,6 +46,7 @@ public class Grill : NetworkBehaviour
 
         _burgers.Add(burger);
         burger.IsVisable = true;
+        _particleSystem.Play();
         // if (NetworkManager.Singleton.IsServer) _isPlaying.Value = true;
     }
 
@@ -59,5 +62,6 @@ public class Grill : NetworkBehaviour
         burger.IsVisable = false;
 
         // if (NetworkManager.Singleton.IsServer) _isPlaying.Value = false;
+        if(_burgers.Count <= 0) _particleSystem.Stop();
     }
 }
