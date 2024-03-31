@@ -41,7 +41,7 @@ public class GameManager : NetworkBehaviour
                 {
                     _inRound.Value = false;
                     // _orderSystem.ClearOrderAndDisplay();
-                    _orderSystem.ForEach(item => item.ClearOrderAndDisplay());
+                    _orderSystem.ForEach(item => item.RoundOver());
                     _timer.Value = 0;
                 }
             }
@@ -69,7 +69,7 @@ public class GameManager : NetworkBehaviour
         _inRound.Value = true;
         _cash.Value = 0;
         _timer.Value = roundTimer;
-        _orderSystem.ForEach(item => item.Innit());
+        _orderSystem.ForEach(item => item.RoundStart());
     }
 
 }
