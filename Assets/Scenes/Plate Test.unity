@@ -339,17 +339,6 @@ Transform:
   - {fileID: 1329733435468487847}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &387894263 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1157106819194792653, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-  m_PrefabInstance: {fileID: 1643097764}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4253f32900bcc4d499d675566142ded0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &532876228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,94 +1024,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_PositionInput.m_Action.m_Id
-      value: f8b0fe24-8820-4446-89eb-25fd477f4b79
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_RotationInput.m_Action.m_Id
-      value: b9805fc8-eed6-4639-8379-d29d046a097b
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_PositionInput.m_Action.m_Name
-      value: Position
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_RotationInput.m_Action.m_Name
-      value: Rotation
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_PositionInput.m_Action.m_ExpectedControlType
-      value: Vector3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_RotationInput.m_Action.m_ExpectedControlType
-      value: Quaternion
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_PositionInput.m_Action.m_SingletonActionBindings.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_RotationInput.m_Action.m_SingletonActionBindings.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_PositionInput.m_Action.m_SingletonActionBindings.Array.data[0].m_Id
-      value: 5d98675a-eeb1-434e-a78b-cdf9b31991dc
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_PositionInput.m_Action.m_SingletonActionBindings.Array.data[1].m_Id
-      value: 5271c3b9-cfd1-42ae-9c58-a61235f196d7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_RotationInput.m_Action.m_SingletonActionBindings.Array.data[0].m_Id
-      value: 0daee70c-6637-4310-83cd-183af9e61603
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_RotationInput.m_Action.m_SingletonActionBindings.Array.data[1].m_Id
-      value: 71253142-e18e-46ed-8290-e03be1b44072
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_PositionInput.m_Action.m_SingletonActionBindings.Array.data[0].m_Path
-      value: <XRHMD>/centerEyePosition
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_PositionInput.m_Action.m_SingletonActionBindings.Array.data[1].m_Path
-      value: <HandheldARInputDevice>/devicePosition
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_RotationInput.m_Action.m_SingletonActionBindings.Array.data[0].m_Path
-      value: <XRHMD>/centerEyeRotation
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_RotationInput.m_Action.m_SingletonActionBindings.Array.data[1].m_Path
-      value: <HandheldARInputDevice>/deviceRotation
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_PositionInput.m_Action.m_SingletonActionBindings.Array.data[0].m_Action
-      value: Position
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_PositionInput.m_Action.m_SingletonActionBindings.Array.data[1].m_Action
-      value: Position
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_RotationInput.m_Action.m_SingletonActionBindings.Array.data[0].m_Action
-      value: Rotation
-      objectReference: {fileID: 0}
-    - target: {fileID: 2060591324436162668, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: m_RotationInput.m_Action.m_SingletonActionBindings.Array.data[1].m_Action
-      value: Rotation
-      objectReference: {fileID: 0}
-    - target: {fileID: 3689519931257105828, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: _leftHandInteractor
-      value: 
-      objectReference: {fileID: 1863294152}
-    - target: {fileID: 3689519931257105828, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-      propertyPath: _rightHandInteractor
-      value: 
-      objectReference: {fileID: 387894263}
     - target: {fileID: 6416673451260539532, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
       propertyPath: m_Name
       value: Player (XR Rig)
@@ -1382,17 +1283,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!114 &1863294152 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3672256499696067189, guid: b08f8a18e74bc7648be22275a9052248, type: 3}
-  m_PrefabInstance: {fileID: 1643097764}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4253f32900bcc4d499d675566142ded0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2125334234
 PrefabInstance:
   m_ObjectHideFlags: 0

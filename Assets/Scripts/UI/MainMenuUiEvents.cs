@@ -26,7 +26,7 @@ public class MainMenuUiEvents : MonoBehaviour
     {
         NetworkManager.Singleton.StartClient();
 
-        SceneLoader.ChangeScene(SceneLoader.Scenes.Sandbox);
+        SceneLoader.ChangeScene(SceneLoader.Scenes.KITCHEN);
     }
 
     public async void PlayGame()

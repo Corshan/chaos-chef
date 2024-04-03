@@ -5,18 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Multiplayer Test.unity
-    guid: 2a08df6804de7e041aea0b652dd832ee
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 2dac1b13961850d45967d4e383f7e5ca
   - enabled: 1
-    path: Assets/Scenes/Sandbox.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
     path: Assets/Scenes/Kitchen.unity
-    guid: ca87738bdee6a6e45bef0d242df41658
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 0629a7aed79feb8449bbc438e5448ea2, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 90b4a19e7a8533548897e26dcc2c6928, type: 2}

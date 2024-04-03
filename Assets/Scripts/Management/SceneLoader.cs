@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public static class SceneLoader
 {
     public enum Scenes {
-        MainMenu = 0,
-        Sandbox = 1
+        MAIN_MENU = 0,
+        KITCHEN = 1
     }
     
     public static void ChangeScene(Scenes scene){

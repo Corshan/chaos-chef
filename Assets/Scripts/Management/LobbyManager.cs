@@ -47,7 +47,7 @@ namespace LobbySystem
             if (NetworkManager.Singleton.IsServer) return;
 
             NetworkManager.Singleton.Shutdown();
-            SceneLoader.ChangeScene(SceneLoader.Scenes.MainMenu);
+            SceneLoader.ChangeScene(SceneLoader.Scenes.MAIN_MENU);
         }
 
         private void Update()
@@ -86,9 +86,7 @@ namespace LobbySystem
         {
             try
             {
-                Debug.Log("i got here: line 89");
                 currentLobby = await Lobbies.Instance.QuickJoinLobbyAsync();
-                Debug.Log("i got here: line 91");
                 string replayJoinCode = currentLobby.Data["JOIN_CODE"].Value;
 
                 JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(replayJoinCode);
@@ -121,6 +119,11 @@ namespace LobbySystem
 
             Debug.Log(newJoinCode);
             NetworkManager.Singleton.StartServer();
+        }
+
+        public void DisconnectFromLobby()
+        {
+            Lobbies.Instance.RemovePlayerAsync(currentLobby.Id, AuthenticationService.Instance.PlayerId);
         }
 
         private void SendHeartBeatPing()
