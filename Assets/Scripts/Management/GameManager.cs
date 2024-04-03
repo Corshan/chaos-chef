@@ -10,14 +10,13 @@ public class GameManager : NetworkBehaviour
 {
     [SerializeField][Range(60, 600)] private float roundTimer = 300;
     [SerializeField] private NetworkVariable<bool> _inRound = new(false);
-    // private float timer = 0;
-    private NetworkVariable<float> _timer = new(0);
-    private NetworkVariable<int> _cash = new(0);
-
     [SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private TextMeshProUGUI _cashText;
     [SerializeField][Range(10, 100)] private int _burgerCashAmount = 10;
     [SerializeField] private List<OrderSystem> _orderSystem;
+    public bool InRound => _inRound.Value;
+    private NetworkVariable<float> _timer = new(0);
+    private NetworkVariable<int> _cash = new(0);
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +69,15 @@ public class GameManager : NetworkBehaviour
         _cash.Value = 0;
         _timer.Value = roundTimer;
         _orderSystem.ForEach(item => item.RoundStart());
+    }
+
+    public void EndGame()
+    {
+        if (!_inRound.Value) return;
+
+        _inRound.Value = false;
+        _timer.Value = roundTimer;
+        _orderSystem.ForEach(item => item.RoundOver());
     }
 
 }
