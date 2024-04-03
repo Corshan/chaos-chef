@@ -185,6 +185,7 @@ public class OrderSystem : NetworkBehaviour
         TriggereffectsClientRpc();
 
         _anim.SetTrigger("leave");
+        _agentIsStopped.Value = false;
     }
 
     void GenerateOrder()

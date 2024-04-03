@@ -24,7 +24,7 @@ public class PlateItems : NetworkBehaviour
         var tag = other.GetComponent<ItemTag>().itemTag;
         var otherNetworkObject = other.GetComponent<NetworkObject>();
 
-        if (tag == PlateItemTags.BUTTOM_BUN)
+        if (tag == PlateItemTags.BUTTOM_BUN && !_items.Contains(tag))
         {
             var go = _dict[tag];
             otherNetworkObject.Despawn();
@@ -38,7 +38,7 @@ public class PlateItems : NetworkBehaviour
             _isBottomBun = true;
             PlaceClientRpc(tag, _attachPoint.position);
         }
-        else if (tag == PlateItemTags.BURGER_PATTY && _isBottomBun)
+        else if (tag == PlateItemTags.BURGER_PATTY && _isBottomBun && !_items.Contains(tag))
         {
             var burger = other.GetComponent<BurgerHealth>();
             if (burger.state == BurgerState.COOKED)
@@ -48,7 +48,7 @@ public class PlateItems : NetworkBehaviour
                 _isPatty = true;
             }
         }
-        else if (_dict.ContainsKey(tag) && _isBottomBun && _isPatty && !_isTopBun)
+        else if (_dict.ContainsKey(tag) && _isBottomBun && _isPatty && !_isTopBun && !_items.Contains(tag))
         {
             ActiveModel(tag, other.gameObject);
             otherNetworkObject.Despawn();

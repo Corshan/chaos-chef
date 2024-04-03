@@ -33,8 +33,6 @@ public class ItemCheck : NetworkBehaviour
 
             bool result = _orderSystem.CheckOrder(items);
 
-            Debug.Log(result);
-
             if (result)
             {
                 other.GetComponent<NetworkObject>().Despawn();
