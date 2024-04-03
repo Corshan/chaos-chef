@@ -82,11 +82,13 @@ namespace LobbySystem
             NetworkManager.Singleton.StartClient();
         }
 
-        public async void QuickJoin()
+        public async Task QuickJoin()
         {
             try
             {
+                Debug.Log("i got here: line 89");
                 currentLobby = await Lobbies.Instance.QuickJoinLobbyAsync();
+                Debug.Log("i got here: line 91");
                 string replayJoinCode = currentLobby.Data["JOIN_CODE"].Value;
 
                 JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(replayJoinCode);
@@ -95,10 +97,10 @@ namespace LobbySystem
                     allocation.AllocationIdBytes, allocation.Key, allocation.ConnectionData, allocation.HostConnectionData);
                 NetworkManager.Singleton.StartClient();
             }
-            catch (RelayServiceException e)
+            catch (Exception e)
             {
-                Debug.Log(e);
-                throw e;
+                Debug.Log("Lobby Manager");
+                throw new Exception("Connection Failed");
             }
         }
 

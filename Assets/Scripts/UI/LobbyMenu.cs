@@ -11,18 +11,18 @@ public class LobbyMenu : MonoBehaviour
 
     private List<Lobby> lobbies;
     // Start is called before the first frame update
-    async void Start()
-    {
-        var response = await LobbyManager.Singleton.GetAllLobbiesAsync();
-        lobbies = response.Results;
+    // async void Start()
+    // {
+    //     var response = await LobbyManager.Singleton.GetAllLobbiesAsync();
+    //     lobbies = response.Results;
 
-        for (int i = 0; i < lobbies.Count; i++)
-        {
-            GameObject clone = Instantiate(joinComponent, this.transform);
+    //     for (int i = 0; i < lobbies.Count; i++)
+    //     {
+    //         GameObject clone = Instantiate(joinComponent, this.transform);
 
-            clone.GetComponent<JoinComponent>().lobby = lobbies[i];
-        }
-    }
+    //         clone.GetComponent<JoinComponent>().lobby = lobbies[i];
+    //     }
+    // }
 
     // Update is called once per frame
     void Update()
