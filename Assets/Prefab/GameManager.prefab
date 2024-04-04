@@ -45,10 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946f4bda7dc60f84b99527191b68145d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundTimer: 60
+  roundTimer: 300
   _inRound:
     m_InternalValue: 0
   _timerText: {fileID: 0}
+  _cashText: {fileID: 0}
+  _burgerCashAmount: 100
+  _orderSystem:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &8349099750675119005
 MonoBehaviour:
   m_ObjectHideFlags: 0

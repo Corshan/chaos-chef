@@ -4,14 +4,16 @@ using System.Collections.Generic;
 using LobbySystem;
 using TMPro;
 using Unity.Netcode;
-using Unity.Services.Lobbies;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameMenuUI : NetworkBehaviour
 {
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private TextMeshProUGUI _buttontext;
     [SerializeField] private GameObject _settingsMenu;
+    [SerializeField] private Slider _musicSlider;
+    [SerializeField] private Slider _soundSlider;
     private NetworkVariable<bool> _text = new();
     private bool _isOpen = false;
 
@@ -19,6 +21,14 @@ public class GameMenuUI : NetworkBehaviour
     {
         _text.OnValueChanged += TextUpdate;
         _settingsMenu.SetActive(_isOpen);
+
+        _musicSlider.minValue = AudioManager.Singleton.MinVolume;
+        _musicSlider.maxValue = AudioManager.Singleton.MaxVolume;
+        _musicSlider.value = AudioManager.Singleton.MusicVolume();
+
+        _soundSlider.minValue = AudioManager.Singleton.MinVolume;
+        _soundSlider.maxValue = AudioManager.Singleton.MaxVolume;
+        _soundSlider.value = AudioManager.Singleton.SfxVolume();
     }
 
     private void TextUpdate(bool previousValue, bool newValue)
@@ -30,7 +40,8 @@ public class GameMenuUI : NetworkBehaviour
 
     public void ToggleSettingsScreen()
     {
-        _settingsMenu.SetActive(!_isOpen);
+        _isOpen = !_isOpen;
+        _settingsMenu.SetActive(_isOpen);
     }
 
     public void Disconnect()
@@ -76,5 +87,15 @@ public class GameMenuUI : NetworkBehaviour
         _gameManager.EndGame();
         _buttontext.text = "Start Shift";
         _text.Value = false;
+    }
+
+    public void OnMusicVolumeChanged(float value)
+    {
+        AudioManager.Singleton.ChangeMusicVolume(value);
+    }
+
+    public void OnSfxVolumeChanged(float value)
+    {
+        AudioManager.Singleton.ChangeSFXVolume(value);
     }
 }

@@ -6,12 +6,15 @@ using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuUiEvents : MonoBehaviour
 {
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _connectingScreen;
     [SerializeField] private TextMeshProUGUI _message;
+    [SerializeField] private Slider _musicSlider;
+    [SerializeField] private Slider _soundSlider;
     private Animator _anim;
 
     private void Start()
@@ -20,6 +23,14 @@ public class MainMenuUiEvents : MonoBehaviour
         ActivateMainMenu(true);
         _message.text = "Connecting...";
         _message.color = Color.white;
+
+        _musicSlider.minValue = AudioManager.Singleton.MinVolume;
+        _musicSlider.maxValue = AudioManager.Singleton.MaxVolume;
+        _musicSlider.value = AudioManager.Singleton.MusicVolume();
+
+        _soundSlider.minValue = AudioManager.Singleton.MinVolume;
+        _soundSlider.maxValue = AudioManager.Singleton.MaxVolume;
+        _soundSlider.value = AudioManager.Singleton.SfxVolume();
     }
 
     public void JoinServer()
@@ -47,9 +58,6 @@ public class MainMenuUiEvents : MonoBehaviour
             _message.text = "Connection Failed";
 
             Invoke(nameof(InvokeMainMenu), 3);
-
-            Debug.LogError(e);
-            Debug.LogError("Main Menu");
         }
     }
 
@@ -70,5 +78,15 @@ public class MainMenuUiEvents : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void OnMusicVolumeChanged(float value)
+    {
+        AudioManager.Singleton.ChangeMusicVolume(value);
+    }
+
+    public void OnSfxVolumeChanged(float value)
+    {
+        AudioManager.Singleton.ChangeSFXVolume(value);
     }
 }
