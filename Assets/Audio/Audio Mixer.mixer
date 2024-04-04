@@ -29,7 +29,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -658382591352717703}
-  m_UserColorIndex: 0
+  m_UserColorIndex: 1
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
@@ -48,11 +48,16 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 7bdeff86aaef4444a8ca9397fbf7b0eb
+    name: MusicVolume
+  - guid: 99c22e5f6b4e9194993d83f2b442915d
+    name: SfxVolume
   m_AudioMixerGroupViews:
   - guids:
     - 747eaafad0d3ee643b2bb1eb445376e9
     - 65aaa755c2c3a5445ac865db0c46cb67
+    - 67a3b2d2c1638724590879ec0865ec43
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -67,6 +72,7 @@ AudioMixerGroupController:
   m_GroupID: 747eaafad0d3ee643b2bb1eb445376e9
   m_Children:
   - {fileID: -573264131322938806}
+  - {fileID: 8396753553452096013}
   m_Volume: 318db8bf6a4943e4982348a5e7126775
   m_Pitch: 5d8ec5337300ea44ca6d4fec1f672f37
   m_Send: 00000000000000000000000000000000
@@ -99,5 +105,39 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: e3e36a1ab7dd4a940b1ee284c64e13d4
-  m_FloatValues: {}
+  m_FloatValues:
+    99c22e5f6b4e9194993d83f2b442915d: 0.3945702
   m_TransitionOverrides: {}
+--- !u!244 &4762778313230885256
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 00633770b43e94348957e5ced746d8c8
+  m_EffectName: Attenuation
+  m_MixLevel: 32431bcc5e0b5b545bcbee61f3729919
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &8396753553452096013
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Music
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 67a3b2d2c1638724590879ec0865ec43
+  m_Children: []
+  m_Volume: 7bdeff86aaef4444a8ca9397fbf7b0eb
+  m_Pitch: b6c7174c840ae0e47b5fec1747671869
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 4762778313230885256}
+  m_UserColorIndex: 3
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0

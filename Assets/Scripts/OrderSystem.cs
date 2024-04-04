@@ -84,9 +84,12 @@ public class OrderSystem : NetworkBehaviour
     {
         ClearOrderAndDisplay();
         _timer.Value = _timerAmount;
+
         _inRound.Value = false;
-        _anim.SetTrigger("leave");
         _agentIsStopped.Value = false;
+
+        _anim.SetTrigger("leave");
+        _anim.ResetTrigger("toCounter");
     }
 
     public void RoundStart()
