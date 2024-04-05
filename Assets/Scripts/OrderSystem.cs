@@ -37,16 +37,20 @@ public class OrderSystem : NetworkBehaviour
     private Animator _anim;
     private AnimatorStateInfo _info;
     private NavMeshAgent _agent;
+    private NPC _npcSettings;
     private NetworkVariable<float> _timer = new(0);
     private NetworkVariable<bool> _inRound = new(false);
     private NetworkVariable<Vector3> _target = new();
     private NetworkVariable<bool> _agentIsStopped = new(false);
     private bool _hasOrdered = false;
+    private bool _newNpcModel = false;
 
     // Start is called before the first frame update
     void Start()
     {
         _anim = _npc.GetComponent<Animator>();
+        _npcSettings = _npc.GetComponent<NPC>();
+
         _info = _anim.GetCurrentAnimatorStateInfo(0);
         _agent = _npc.GetComponent<NavMeshAgent>();
 
@@ -113,6 +117,12 @@ public class OrderSystem : NetworkBehaviour
         ResetTriggers();
 
         if (_inRound.Value) _anim.SetTrigger("toCounter");
+
+        if (!_newNpcModel)
+        {
+            _npcSettings.ChooseModel();
+            _newNpcModel = true;
+        }
     }
 
     private void MovetoCounter()
@@ -144,7 +154,7 @@ public class OrderSystem : NetworkBehaviour
         if (_timer.Value <= 0)
         {
             _anim.SetTrigger("leave");
-            _agentIsStopped.Value = false;
+            ClearOrderAndDisplay();
         }
 
         if ((_timer.Value / _timerAmount) < _percentageToRed)
@@ -160,7 +170,11 @@ public class OrderSystem : NetworkBehaviour
         if (Vector3.Distance(_npc.transform.position, _startPos.position) < 1)
         {
             _anim.SetTrigger("idle");
+            _npcSettings.ShowBurgerBox(false);
+            _newNpcModel = false;
         }
+
+        _agentIsStopped.Value = false;
         ClearOrderAndDisplay();
         _hasOrdered = false;
     }
@@ -187,8 +201,8 @@ public class OrderSystem : NetworkBehaviour
         TriggerEffects();
         TriggereffectsClientRpc();
 
-        _anim.SetTrigger("leave");
-        _agentIsStopped.Value = false;
+        _anim.SetTrigger("success");
+        _npcSettings.ShowBurgerBox(true);
     }
 
     void GenerateOrder()
