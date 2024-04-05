@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_SphereCastRadius: 0.1
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 32
   m_RaycastTriggerInteraction: 1
   m_RaycastSnapVolumeInteraction: 1
   m_HitClosestOnly: 0
@@ -2013,7 +2013,7 @@ MonoBehaviour:
   m_SphereCastRadius: 0.1
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 32
   m_RaycastTriggerInteraction: 1
   m_RaycastSnapVolumeInteraction: 1
   m_HitClosestOnly: 0
@@ -2325,6 +2325,7 @@ GameObject:
   - component: {fileID: 91306001344857717}
   - component: {fileID: 6741820473332958271}
   - component: {fileID: 3689519931257105828}
+  - component: {fileID: 3624047017017436038}
   m_Layer: 0
   m_Name: Player (XR Rig)
   m_TagString: Player
@@ -2478,3 +2479,18 @@ MonoBehaviour:
   head: {fileID: 5741805939282233467}
   leftHand: {fileID: 2933141418901136842}
   rightHand: {fileID: 5719276920366883973}
+--- !u!114 &3624047017017436038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6416673451260539532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af6bf904e410ee8479f9093d8830d1f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LocomotionProvider: {fileID: 91306001344857717}
+  m_MinHeight: 0
+  m_MaxHeight: Infinity
