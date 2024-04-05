@@ -9,11 +9,13 @@ using UnityEngine;
 public class GameManager : NetworkBehaviour
 {
     [SerializeField][Range(60, 600)] private float roundTimer = 300;
-    [SerializeField] private NetworkVariable<bool> _inRound = new(false);
     [SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private TextMeshProUGUI _cashText;
     [SerializeField][Range(10, 100)] private int _burgerCashAmount = 10;
     [SerializeField] private List<OrderSystem> _orderSystem;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _audioClip;
+    private NetworkVariable<bool> _inRound = new(false);
     public bool InRound => _inRound.Value;
     private NetworkVariable<float> _timer = new(0);
     private NetworkVariable<int> _cash = new(0);
@@ -39,9 +41,9 @@ public class GameManager : NetworkBehaviour
                 if (_timer.Value < 0)
                 {
                     _inRound.Value = false;
-                    // _orderSystem.ClearOrderAndDisplay();
                     _orderSystem.ForEach(item => item.RoundOver());
                     _timer.Value = 0;
+                    PlayEndGameBuzzerClientRpc();
                 }
             }
 
@@ -78,6 +80,13 @@ public class GameManager : NetworkBehaviour
         _inRound.Value = false;
         _timer.Value = roundTimer;
         _orderSystem.ForEach(item => item.RoundOver());
+        PlayEndGameBuzzerClientRpc();
+    }
+
+    [ClientRpc]
+    public void PlayEndGameBuzzerClientRpc()
+    {
+        _audioSource.PlayOneShot(_audioClip);
     }
 
 }

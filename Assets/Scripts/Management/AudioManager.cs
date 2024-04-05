@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Singleton { get; private set; }
     [SerializeField] private AudioMixer _audioMixer;
-    [SerializeField] private float _minVolume, _maxVolume;
+    [SerializeField][Range(-80, 20)] private float _minVolume, _maxVolume;
     public float MinVolume => _minVolume;
     public float MaxVolume => _maxVolume;
 
