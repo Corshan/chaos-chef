@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class GameManager : NetworkBehaviour
 {
+    public static GameManager Singleton { get; private set; }
     [SerializeField][Range(60, 600)] private float roundTimer = 300;
     [SerializeField] private TextMeshProUGUI _timerText;
     [SerializeField] private TextMeshProUGUI _cashText;
@@ -20,12 +21,29 @@ public class GameManager : NetworkBehaviour
     private NetworkVariable<float> _timer = new(0);
     private NetworkVariable<int> _cash = new(0);
 
+    private void Awake()
+        {
+            if (Singleton != null && Singleton != this) Destroy(this);
+            else
+            {
+                Singleton = this;
+                DontDestroyOnLoad(this);
+            }
+        }
+
     // Start is called before the first frame update
     void Start()
     {
         _timer.Value = roundTimer;
         _timerText.text = ConvertTimer(_timer.Value);
         _cashText.text = _cash.Value + "";
+
+        _timer.OnValueChanged += OnTimerChanged;
+    }
+
+    private void OnTimerChanged(float previousValue, float newValue)
+    {
+        _timerText.text = ConvertTimer(newValue);
     }
 
     // Update is called once per frame
@@ -89,4 +107,9 @@ public class GameManager : NetworkBehaviour
         _audioSource.PlayOneShot(_audioClip);
     }
 
+    public void SetTimer(float timeAmount)
+    {
+        roundTimer = timeAmount;
+        _timer.Value = roundTimer;
+    }
 }

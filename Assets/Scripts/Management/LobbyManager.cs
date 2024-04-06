@@ -117,7 +117,7 @@ namespace LobbySystem
 
             currentLobby = await Lobbies.Instance.CreateLobbyAsync("Lobby name", maxConnection, lobbyOptions);
 
-            Debug.Log(newJoinCode);
+            Debug.Log($"[LobbyManager] Join Code => {newJoinCode}");
             NetworkManager.Singleton.StartServer();
         }
 
@@ -133,7 +133,7 @@ namespace LobbySystem
                 if (currentLobby != null && currentLobby.HostId == AuthenticationService.Instance.PlayerId)
                 {
                     LobbyService.Instance.SendHeartbeatPingAsync(currentLobby.Id);
-                    Debug.Log("Heart Beat Sent");
+                    Debug.Log("[LobbyManager] Heart Beat Sent");
                 }
 
                 _heartBeatTimer = 0;

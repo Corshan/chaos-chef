@@ -1,0 +1,34 @@
+{
+    "name": "Server",
+    "maps": [
+        {
+            "name": "Server",
+            "id": "1fca8972-62c5-414d-9f16-d9559b38bbb0",
+            "actions": [
+                {
+                    "name": "Return",
+                    "type": "Button",
+                    "id": "d89fadcb-80ea-4d3e-9b15-51b87adcc289",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "16179ba7-8872-4c41-a22f-557135da5a3b",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Return",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
