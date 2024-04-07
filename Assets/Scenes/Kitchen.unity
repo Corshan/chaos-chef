@@ -20382,6 +20382,17 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
+--- !u!114 &1812774351 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6761330099023303823, guid: 1b218c25f896eb945a8cde884db6df32, type: 3}
+  m_PrefabInstance: {fileID: 5926140736669506698}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b19b3d3b45a3fc147bd7dc988d80d94c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1817947776
 GameObject:
   m_ObjectHideFlags: 0
@@ -23048,6 +23059,10 @@ PrefabInstance:
       propertyPath: _timerText
       value: 
       objectReference: {fileID: 2132877281}
+    - target: {fileID: 7646458589269779684, guid: 3636ab9f7803ff949abc7bc43498ba26, type: 3}
+      propertyPath: _gameMenuUI
+      value: 
+      objectReference: {fileID: 1812774351}
     - target: {fileID: 7646458589269779684, guid: 3636ab9f7803ff949abc7bc43498ba26, type: 3}
       propertyPath: _orderSystem.Array.data[0]
       value: 

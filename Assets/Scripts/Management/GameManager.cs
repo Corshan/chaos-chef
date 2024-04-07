@@ -16,20 +16,21 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private List<OrderSystem> _orderSystem;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _audioClip;
+    [SerializeField] private GameMenuUI _gameMenuUI;
     private NetworkVariable<bool> _inRound = new(false);
     public bool InRound => _inRound.Value;
     private NetworkVariable<float> _timer = new(0);
     private NetworkVariable<int> _cash = new(0);
 
     private void Awake()
+    {
+        if (Singleton != null && Singleton != this) Destroy(this);
+        else
         {
-            if (Singleton != null && Singleton != this) Destroy(this);
-            else
-            {
-                Singleton = this;
-                DontDestroyOnLoad(this);
-            }
+            Singleton = this;
+            DontDestroyOnLoad(this);
         }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -39,11 +40,17 @@ public class GameManager : NetworkBehaviour
         _cashText.text = _cash.Value + "";
 
         _timer.OnValueChanged += OnTimerChanged;
+        _cash.OnValueChanged += OnCashChanged;
     }
 
     private void OnTimerChanged(float previousValue, float newValue)
     {
         _timerText.text = ConvertTimer(newValue);
+    }
+
+    private void OnCashChanged(int previousValue, int newValue)
+    {
+        _cashText.text = $"{newValue}";
     }
 
     // Update is called once per frame
@@ -111,5 +118,27 @@ public class GameManager : NetworkBehaviour
     {
         roundTimer = timeAmount;
         _timer.Value = roundTimer;
+    }
+
+    public void SetCashAmount(int amount)
+    {
+        Debug.Log($"[GameManager] Cash amount changed from {_burgerCashAmount} to {amount}");
+        _burgerCashAmount = amount;
+    }
+
+    public void SetCashEarned(int amount)
+    {
+        Debug.Log($"[GameManager] Cash earned changed from {_cash.Value} to {amount}");
+        _cash.Value = amount;
+    }
+
+    public void StartShift()
+    {
+        _gameMenuUI.StartShift();
+    }
+
+    public void EndShift()
+    {
+        _gameMenuUI.EndShift();
     }
 }

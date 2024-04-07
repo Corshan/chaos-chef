@@ -76,17 +76,13 @@ public class GameMenuUI : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void StartGameEventServerRpc()
     {
-        _gameManager.StartGame();
-        _buttontext.text = "End Shift";
-        _text.Value = true;
+        StartShift();
     }
 
     [ServerRpc(RequireOwnership = false)]
     public void EndGameEventServerRpc()
     {
-        _gameManager.EndGame();
-        _buttontext.text = "Start Shift";
-        _text.Value = false;
+        EndShift();
     }
 
     public void OnMusicVolumeChanged(float value)
@@ -97,5 +93,21 @@ public class GameMenuUI : NetworkBehaviour
     public void OnSfxVolumeChanged(float value)
     {
         AudioManager.Singleton.ChangeSFXVolume(value);
+    }
+
+    public void EndShift()
+    {
+        _gameManager.EndGame();
+        _buttontext.text = "Start Shift";
+        _text.Value = false;
+        Debug.Log($"[GameManager] Shift Ended");
+    }
+
+    public void StartShift()
+    {
+        _gameManager.StartGame();
+        _buttontext.text = "End Shift";
+        _text.Value = true;
+        Debug.Log($"[GameManager] Shift Started");
     }
 }

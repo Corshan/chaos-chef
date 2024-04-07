@@ -26,15 +26,21 @@ public class DebugController : MonoBehaviour
 {
     string _input;
     bool showHelp = false;
-    bool showDebug = false;
+    bool showDebug = true;
     Vector2 helpScroll;
     Vector2 debugScroll;
     int prevLogCount = 0;
     public static DebugCommand CREATE_SERVER;
+    public static DebugCommand START_SHIFT;
+    public static DebugCommand END_SHIFT;
+    public static DebugCommand STOP_SERVER;
+    public static DebugCommand RESTART_SERVER;
     public static DebugCommand HELP;
     public static DebugCommand DEBUG;
     public static DebugCommand MUTE;
     public static DebugCommand<int> SET_TIMER;
+    public static DebugCommand<int> SET_CASH_EARNED;
+    public static DebugCommand<int> SET_CASH_AMOUNT;
     public static DebugCommand<int> SET_MUSIC_VOLUME;
     public static DebugCommand<int> SET_SFX_VOLUME;
 
@@ -48,9 +54,29 @@ public class DebugController : MonoBehaviour
             LobbyManager.Singleton.CreateServer();
         });
 
+        STOP_SERVER = new DebugCommand("stop_server", "Destroys the game server", "stop_server", () =>
+        {
+            LobbyManager.Singleton.DestroyServer();
+        });
+
+        RESTART_SERVER = new DebugCommand("restart_server", "Restarts game server", "restart_server", () =>
+        {
+            LobbyManager.Singleton.RestartServer();
+        });
+
         SET_TIMER = new DebugCommand<int>("set_timer", "Sets how long each round lasts", "set_timer <timer_amount>", (value) =>
         {
             GameManager.Singleton.SetTimer((float)value);
+        });
+
+        SET_CASH_EARNED = new DebugCommand<int>("set_cash_earned", "Set the total amount of cashed earned", "set_cash_earned <cash_amount>", (value) =>
+        {
+            GameManager.Singleton.SetCashEarned(value);
+        });
+
+        SET_CASH_AMOUNT = new DebugCommand<int>("set_cash_amount", "Set the amount eanred per order", "set_cash_amount <cash_amount>", (value) =>
+        {
+            GameManager.Singleton.SetCashAmount(value);
         });
 
         SET_MUSIC_VOLUME = new DebugCommand<int>("set_music_volume", "Set the volume of music", "set_music_volume <volume_amount>", (value) =>
@@ -79,15 +105,32 @@ public class DebugController : MonoBehaviour
             AudioManager.Singleton.ChangeSFXVolume(-80);
         });
 
+        START_SHIFT = new DebugCommand("start_shift", "Starts the round", "start_shift", () =>
+        {
+            GameManager.Singleton.StartShift();
+        });
+
+        END_SHIFT = new DebugCommand("end_shift", "End the round", "end_shift", () =>
+        {
+            GameManager.Singleton.EndShift();
+        });
+
 
         commandList = new List<object> {
             CREATE_SERVER,
+            STOP_SERVER,
+            RESTART_SERVER,
             SET_TIMER,
             SET_MUSIC_VOLUME,
             SET_SFX_VOLUME,
             HELP,
             DEBUG,
             MUTE,
+            SET_CASH_AMOUNT,
+            SET_CASH_EARNED,
+            START_SHIFT,
+            END_SHIFT,
+            new DebugCommand("","","", ()=>{}),
         };
 
         Application.logMessageReceived += HandleLog;
@@ -189,7 +232,7 @@ public class DebugController : MonoBehaviour
 
         if (prevLogCount != _logs.Count)
         {
-            debugScroll = new Vector2(0,0);
+            debugScroll = new Vector2(0, 0);
             prevLogCount = _logs.Count;
         }
 

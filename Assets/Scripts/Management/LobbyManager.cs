@@ -121,6 +121,28 @@ namespace LobbySystem
             NetworkManager.Singleton.StartServer();
         }
 
+        public void RestartServer()
+        {
+            DestroyServer();
+            CreateServer();
+        }
+
+        public async void DestroyServer()
+        {
+            DisconnectClients();
+            NetworkManager.Singleton.Shutdown();
+            await Lobbies.Instance.DeleteLobbyAsync(currentLobby.Id);
+            currentLobby = null;
+        }
+
+        private void DisconnectClients()
+        {
+            foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
+            {
+                NetworkManager.Singleton.DisconnectClient(client.ClientId);
+            }
+        }
+
         public void DisconnectFromLobby()
         {
             Lobbies.Instance.RemovePlayerAsync(currentLobby.Id, AuthenticationService.Instance.PlayerId);
