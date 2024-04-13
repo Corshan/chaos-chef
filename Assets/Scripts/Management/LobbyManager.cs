@@ -45,7 +45,8 @@ namespace LobbySystem
         private void OnDisconnect(ulong obj)
         {
             if (NetworkManager.Singleton.IsServer) return;
-
+            
+            DisconnectFromLobby();
             NetworkManager.Singleton.Shutdown();
             SceneLoader.ChangeScene(SceneLoader.Scenes.MAIN_MENU);
         }
